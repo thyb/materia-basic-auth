@@ -49,7 +49,7 @@
 			"id": "auth",
 			"type": "custom",
 			"opts": {
-				"file": "addons/basic-auth/query/auth"
+				"file": "addons/materia-basic-auth/query/auth"
 			}
 		}
 	]
