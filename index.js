@@ -61,14 +61,14 @@ class BasicAuth {
 
 	start() {
 		let fillDefaultRoles = ! this.app.entities.get('user_role')
-		return Promise.all([
-			this.app.entities.getOrAdd('user', userEntityConfig, {history:false}),
-			this.app.entities.getOrAdd('user_role', userRoleEntityConfig, {history:false}),
-			this.app.entities.getOrAdd('user_permission', userPermissionEntityConfig, {history:false})
-		]).then((auth_entities) => {
-			this.user = auth_entities[0]
-			this.user_role = auth_entities[1]
-			this.user_permissions = auth_entities[2]
+		return this.app.entities.getOrAdd('user_permission', userPermissionEntityConfig, {history:false}).then((entity) => {
+			this.user_permissions = entity
+			return this.app.entities.getOrAdd('user', userEntityConfig, {history:false})
+		}).then((entity) => {
+			this.user = entity
+			return this.app.entities.getOrAdd('user_role', userRoleEntityConfig, {history:false})
+		}).then((entity) => {
+			this.user_role = entity
 
 			let addDefaultRoles = fillDefaultRoles ? this._addDefaultRoles() : Promise.resolve()
 			return addDefaultRoles.then(() => {
