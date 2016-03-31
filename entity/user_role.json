@@ -1,38 +1,37 @@
 {
-	"name":  "user_role",
+	"name": "user_role",
 	"fields": [
 		{
 			"name": "role",
 			"type": "text",
-			"required": true,
 			"primary": true,
 			"unique": true,
-			"default": false,
-			"autoIncrement": true,
+			"required": true,
 			"read": true,
-			"write": true
+			"write": true,
+			"default": false
 		},
 		{
 			"name": "description",
 			"type": "text",
-			"required": false,
 			"primary": false,
 			"unique": false,
-			"default": false,
-			"autoIncrement": false,
+			"required": false,
 			"read": true,
-			"write": true
+			"write": true,
+			"default": false
 		}
 	],
 	"relations": [
 		{
-			"type": "hasMany",
+			"type": "belongsToMany",
+			"through": "user_permission",
+			"as": "role",
 			"reference": {
-				"entity": "user_permission",
-				"field": "role"
+				"entity": "user",
+				"as": "id_user"
 			}
 		}
 	],
-	"queries": [
-	]
+	"queries": []
 }

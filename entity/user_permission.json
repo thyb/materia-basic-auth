@@ -1,45 +1,13 @@
 {
 	"name": "user_permission",
-	"fields": [
-		{
-			"name": "id_user",
-			"type": "number",
-			"required": true,
-			"primary": true,
-			"unique": true,
-			"default": false,
-			"autoIncrement": false,
-			"read": true,
-			"write": true
-		},
-		{
-			"name": "role",
-			"type": "text",
-			"required": true,
-			"primary": true,
-			"unique": true,
-			"default": false,
-			"autoIncrement": false,
-			"read": true,
-			"write": true
-		}
-	],
-	"relations": [
+	"isRelation": [
 		{
 			"field": "id_user",
-			"type": "belongsTo",
-			"reference": {
-				"entity": "user",
-				"field": "id"
-			}
+			"entity": "user"
 		},
 		{
 			"field": "role",
-			"type": "belongsTo",
-			"reference": {
-				"entity": "user_role",
-				"field": "role"
-			}
+			"entity": "user_role"
 		}
 	],
 	"queries": [
